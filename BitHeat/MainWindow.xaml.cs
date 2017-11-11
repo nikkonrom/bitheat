@@ -1,21 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Controls.DataVisualization;
-using System.Windows.Controls.DataVisualization.Charting;
-using MahApps.Metro.Controls;
 
 
 namespace BitHeat
@@ -25,33 +12,39 @@ namespace BitHeat
     /// </summary>
     public partial class MainWindow 
     {
-        Calculations calculations = new Calculations();
-        public ObservableCollection<KeyValuePair<string, double>> collection = new ObservableCollection<KeyValuePair<string, double>>();
+        readonly Calculations _calculations = new Calculations();
+        private ObservableCollection<KeyValuePair<string, double>> collection = new ObservableCollection<KeyValuePair<string, double>>();
+        private const double schoolArea = 1500, houseArea = 200;
 
         public MainWindow()
         {
             InitializeComponent();
             this.ResizeMode = ResizeMode.NoResize;
             collection.Add(new KeyValuePair<string, double>("", 0));
-            //Chart.DataContext = collection;
             ShowColumnChart();
+            //collection.RemoveAt(0);
         }
 
         private void ShowColumnChart()
         {
 
-            this.collection = calculations.GetList();
+            this.collection = _calculations.GetList();
             Chart.DataContext = collection;
             //    Chart.Series.Add(new ColumnSeries(collection));
         }
 
         private void inputCost_TextChanged(object sender, TextChangedEventArgs e)
         {
+
             inputValue.Clear();
             double value;
             if (Double.TryParse(inputCost.Text, out value))
-                calculations.UpdateCost(value);
+                _calculations.UpdateCost(value);
             ShowColumnChart();
+            double persentSchool = _calculations.Area / schoolArea * 100;
+            double persentHouse = _calculations.Area / houseArea * 100;
+            schoolText.Content = $"{persentSchool}%";
+            homeText.Content = $"{persentHouse}%";
         }
 
         private void inputValue_TextChanged(object sender, TextChangedEventArgs e)
@@ -59,8 +52,12 @@ namespace BitHeat
             inputCost.Clear();
             double value;
             if (Double.TryParse(inputValue.Text, out value))
-                calculations.UpdateTHS(value);
+                _calculations.UpdateTHS(value);
             ShowColumnChart();
+            var persentSchool = _calculations.Area / schoolArea * 100;
+            var persentHouse = _calculations.Area / houseArea * 100;
+            schoolText.Content = $"{persentSchool}%";
+            homeText.Content = $"{persentHouse}%";
         }
     }
 }

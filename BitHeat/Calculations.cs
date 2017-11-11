@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BitHeat
 {
@@ -11,7 +7,7 @@ namespace BitHeat
     {
         private  (double totalEnergy, double heatEnergy, double mineEnergy) energy;
 
-        private  double cost, THS;
+        private  double cost, THS, area;
 
         public void UpdateCost(double value)
         {
@@ -20,6 +16,14 @@ namespace BitHeat
             energy.totalEnergy = cost / 3000 * 1500;
             energy.heatEnergy = energy.totalEnergy * 0.85;
             energy.mineEnergy = energy.totalEnergy * 0.15;
+            GetArea();
+        }
+
+        private void GetArea()
+        {
+            area = energy.heatEnergy * 365 * 24 / 1000;
+            area /= 1000;
+            area = area * 1500 / 523;
         }
 
         public void UpdateTHS(double value)
@@ -28,6 +32,7 @@ namespace BitHeat
             energy.totalEnergy = THS / 13.5 * 1500;
             energy.heatEnergy = energy.totalEnergy * 0.85;
             energy.mineEnergy = energy.totalEnergy * 0.15;
+            area = energy.heatEnergy *0.001 * 0.000860 *1500 / 450;
         }
 
         public ObservableCollection<KeyValuePair<string, double>> GetList()
@@ -40,5 +45,7 @@ namespace BitHeat
             };
             return list;
         }
+
+        public double Area { get { return area; } }
     }
 }
