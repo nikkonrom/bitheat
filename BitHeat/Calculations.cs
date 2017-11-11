@@ -23,7 +23,7 @@ namespace BitHeat
         {
             area = energy.heatEnergy * 365 * 24 / 1000;
             area /= 1000;
-            area = area * 1500 / 523;
+            area = area * 1500 / 444.39;
         }
 
         public void UpdateTHS(double value)
@@ -32,7 +32,7 @@ namespace BitHeat
             energy.totalEnergy = THS / 13.5 * 1500;
             energy.heatEnergy = energy.totalEnergy * 0.85;
             energy.mineEnergy = energy.totalEnergy * 0.15;
-            area = energy.heatEnergy *0.001 * 0.000860 *1500 / 450;
+            GetArea();
         }
 
         public ObservableCollection<KeyValuePair<string, double>> GetList()
