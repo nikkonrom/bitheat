@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Controls.DataVisualization;
 using System.Windows.Controls.DataVisualization.Charting;
+using MahApps.Metro.Controls;
 
 
 namespace BitHeat
@@ -22,7 +23,7 @@ namespace BitHeat
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow 
     {
         Calculations calculations = new Calculations();
         public ObservableCollection<KeyValuePair<string, double>> collection = new ObservableCollection<KeyValuePair<string, double>>();
@@ -30,6 +31,7 @@ namespace BitHeat
         public MainWindow()
         {
             InitializeComponent();
+            this.ResizeMode = ResizeMode.NoResize;
             collection.Add(new KeyValuePair<string, double>("", 0));
             //Chart.DataContext = collection;
             ShowColumnChart();
@@ -45,9 +47,19 @@ namespace BitHeat
 
         private void inputCost_TextChanged(object sender, TextChangedEventArgs e)
         {
+            inputValue.Clear();
             double value;
             if (Double.TryParse(inputCost.Text, out value))
                 calculations.UpdateCost(value);
+            ShowColumnChart();
+        }
+
+        private void inputValue_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            inputCost.Clear();
+            double value;
+            if (Double.TryParse(inputValue.Text, out value))
+                calculations.UpdateTHS(value);
             ShowColumnChart();
         }
     }
