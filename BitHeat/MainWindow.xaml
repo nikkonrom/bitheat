@@ -4,9 +4,34 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BitHeat"
+        xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="MainWindow" Height="381.2" Width="798.2">
+
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <chartingToolkit:Chart
+            Name ="Chart"
+            Title="gg"
+            LegendTitle="wp"
+            Grid.Column="1" Margin="0,0,0,0.2">
+            <chartingToolkit:ColumnSeries DependentValuePath="Value" IndependentValuePath="Key" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="0,0,-93,0.2" Width="221"/>
+        </chartingToolkit:Chart>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+            </Grid.RowDefinitions>
+            <TextBox  Name="inputCost" Grid.Row="0" TextChanged="inputCost_TextChanged"/>
+            <TextBox Name="inputValue" Grid.Row="1"/>
+            
+        </Grid>
     </Grid>
 </Window>
+
+
+
