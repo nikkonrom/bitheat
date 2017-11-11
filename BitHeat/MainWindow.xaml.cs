@@ -37,6 +37,7 @@ namespace BitHeat
         {
 
             inputValue.Clear();
+            inputPower.Clear();
             double value;
             if (Double.TryParse(inputCost.Text, out value))
                 _calculations.UpdateCost(value);
@@ -45,17 +46,38 @@ namespace BitHeat
             double persentHouse = _calculations.Area / houseArea * 100;
             schoolText.Content = $"{persentSchool}%";
             homeText.Content = $"{persentHouse}%";
+            labelHouseArea.Content = $"{_calculations.Area}s.m.";
+            labelSchoolArea.Content = $"{_calculations.Area}s.km.";
+        }
+
+        private void inputPower_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            inputValue.Clear();
+            inputCost.Clear();
+            double value;
+            if (Double.TryParse(inputPower.Text, out value))
+                _calculations.UpdatePower(value);
+            ShowColumnChart();
+            double persentSchool = _calculations.Area / schoolArea * 100;
+            double persentHouse = _calculations.Area / houseArea * 100;
+            schoolText.Content = $"{persentSchool}%";
+            homeText.Content = $"{persentHouse}%";
+            labelHouseArea.Content = $"{_calculations.Area}s.m.";
+            labelSchoolArea.Content = $"{_calculations.Area}s.km.";
         }
 
         private void inputValue_TextChanged(object sender, TextChangedEventArgs e)
         {
             inputCost.Clear();
+            inputPower.Clear();
             double value;
             if (Double.TryParse(inputValue.Text, out value))
                 _calculations.UpdateTHS(value);
             ShowColumnChart();
             var persentSchool = _calculations.Area / schoolArea * 100;
             var persentHouse = _calculations.Area / houseArea * 100;
+            labelHouseArea.Content = $"{_calculations.Area}s.km.";
+            labelSchoolArea.Content = $"{_calculations.Area}s.km.";
             schoolText.Content = $"{persentSchool}%";
             homeText.Content = $"{persentHouse}%";
         }

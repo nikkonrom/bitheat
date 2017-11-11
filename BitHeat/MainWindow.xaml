@@ -31,7 +31,9 @@
                 <RowDefinition Height="25"/>
             </Grid.RowDefinitions>
             <TextBox controls:TextBoxHelper.Watermark="Input $$$.." Name="inputCost" Grid.Row="0" TextChanged="inputCost_TextChanged"/>
-            <TextBox controls:TextBoxHelper.Watermark="Input Tf/s"  Name="inputValue" Grid.Row="1" Height="26" Margin="0,0.4,0.4,0" Grid.RowSpan="2" VerticalAlignment="Top" TextChanged="inputValue_TextChanged"/>
+            <TextBox controls:TextBoxHelper.Watermark="Input Tf/s"  Name="inputValue" Grid.Row="1" TextChanged="inputValue_TextChanged"/>
+            <TextBox controls:TextBoxHelper.Watermark="Input power" Name ="inputPower" Grid.Row="2" TextChanged="inputPower_TextChanged"/>
+            <RadioButton Content=""></RadioButton>
 
         </Grid>
         <Grid Grid.Column ="2">
@@ -51,10 +53,12 @@
                 <Image Source ="c:\Users\jeavr\Desktop\home2.png"/>
             </Grid>
             <Grid Grid.Column="0" Grid.Row="1" >
-                <Label x:Name ="schoolText"  Content ="NIKITA LoX:)" HorizontalAlignment ="Center" VerticalAlignment="Center" />
+                <Label x:Name ="schoolText"  Content ="1" HorizontalAlignment ="Center" VerticalAlignment="Center" />
+                <Label x:Name="labelSchoolArea" Content="1" HorizontalAlignment="Center"/>
             </Grid>
             <Grid Grid.Column="1" Grid.Row="1" >
-                <Label x:Name="homeText" Content ="NIKITA LoX:)" HorizontalAlignment ="Center" VerticalAlignment="Center" />
+                <Label x:Name="labelHouseArea" Content="1" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                <Label x:Name="homeText" Content ="" HorizontalAlignment ="Center" VerticalAlignment="Center" />
             </Grid>
         </Grid>
     </Grid>

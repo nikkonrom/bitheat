@@ -26,6 +26,14 @@ namespace BitHeat
             area = area * 1500 / 444.39;
         }
 
+        public void UpdatePower(double value)
+        {
+            energy.totalEnergy = value;
+            energy.heatEnergy = energy.totalEnergy * 0.85;
+            energy.mineEnergy = energy.totalEnergy * 0.15;
+            GetArea();
+        }
+
         public void UpdateTHS(double value)
         {
             THS = value;
@@ -46,6 +54,6 @@ namespace BitHeat
             return list;
         }
 
-        public double Area { get { return area; } }
+        public double Area  => area; 
     }
 }
